@@ -134,3 +134,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+build
+.svelte-kit
+datas/skins/*
+datas/temps/*
+datas/skins_display/*

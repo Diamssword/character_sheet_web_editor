@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@plugin 'flowbite/plugin';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* ------------------------------------------------------------------
+     • Couleurs de fond – mode sombre (gris très foncé)
+       Elles remplacent les précédentes “primary” et servent de base
+       pour les cartes, arrière‑plans, barres latérales, etc.
+     ------------------------------------------------------------------ */
+  --color-primary-50:  #1e1e1e;   /* très clair – utile pour hover léger */
+  --color-primary-100: #262626;
+  --color-primary-200: #2f2f2f;
+  --color-primary-300: #383838;
+  --color-primary-400: #424242;
+  --color-primary-500: #4b4b4b;   /* gris moyen – couleur principale du fond */
+  --color-primary-600: #555555;
+  --color-primary-700: #5f5f5f;
+  --color-primary-800: #696969;
+  --color-primary-900: #737373;   /* gris plus clair – pour séparateurs légers */
+
+  /* ------------------------------------------------------------------
+     • Couleurs secondaires – texte et détails en vert pomme
+       Vous pouvez réutiliser ces variables partout où du texte,
+       des icônes ou des accents sont affichés.
+     ------------------------------------------------------------------ */
+  --color-secondary-50:  #f2fbf4;   /* très pâle – pour surbrillance très douce */
+  --color-secondary-100: #e5f7e9;
+  --color-secondary-200: #c9efcf;
+  --color-secondary-300: #a8e5ae;
+  --color-secondary-400: #7fd68a;
+  --color-secondary-500: #55c667;   /* vert pomme principal */
+  --color-secondary-600: #44a754;
+  --color-secondary-700: #338540;
+  --color-secondary-800: #22632c;
+  --color-secondary-900: #113118;   /* très foncé – utile pour texte sur fond clair */
+
+  /* ------------------------------------------------------------------
+     • Textes – variantes de vert pomme pour différents niveaux
+     ------------------------------------------------------------------ */
+  --color-secondary-text1: #dfffdc;   /* texte très clair sur fonds sombres */
+  --color-secondary-text:  #2e7d32;   /* texte principal (vert pomme moyen) */
+  --color-secondary-text2: #66bb6a;   /* accent texte secondaire */
+
+  /* ------------------------------------------------------------------
+     • Autres couleurs éventuelles (si vous avez besoin de plus de
+         contrastes ou d’accentuation) – vous pouvez les ajuster
+         librement.
+     ------------------------------------------------------------------ */
+  /* Exemple d’accent orange pour alertes ou boutons spéciaux */
+  --color-accent-500: #ff9800;
+}
+
+@source "../node_modules/flowbite-svelte/dist";
+@layer base {
+  /* disable chrome cancel button */
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+* {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:"wdth" 100;
+  }
+  
