@@ -2,6 +2,7 @@
     import { Button,Tooltip } from "flowbite-svelte";
     import { type SkinEditor } from "./panel";
     import type {  PickedTextureInfos, TextureInfos } from "./skinTypes";
+    import tr from "$lib/translate.svelte";
     let {onclick,onclear,skinEditor,layer,texture,category,index}:{onclick:()=>void,onclear:()=>void,index?:number, skinEditor:SkinEditor,texture:TextureInfos,layer:string,category?:string}=$props();
     let picked=$state(false);
     function isPicked(picked?:PickedTextureInfos)
@@ -17,7 +18,7 @@
 </script>
 {#if texture.id=="clear"}
     <Button class="cursor-pointer ml-2 p-2 -translate-y-2" onclick={onclear}><img class="size-10" src="/skins/clear.svg" alt="Aucun"/></Button>    
-    <Tooltip type="light">Aucun</Tooltip>
+    <Tooltip type="light">{tr("editor.skin.button.none")}</Tooltip>
 {:else}
     <Button class="cursor-pointer ml-2 p-0 {picked?"bg-secondary-text hover:bg-secondary-text2":""}" {onclick}><img class="size-14" src="/datas/skins_display/{skinEditor.getTextureIconPath(layer,texture.id,undefined,category)}" alt={texture.name||texture.id}/> </Button>  
     {#if texture.name}  

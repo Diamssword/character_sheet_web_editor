@@ -1,0 +1,50 @@
+#lang: français
+#remplacez le contenu de 'translation.txt' pour modifier la langue
+#note: vous pouvez aussi traduire le contenu de vos skills, layers, jobs etc.. en definissant une clée de traduction dans leur titre ou description
+
+editor.title.stats=Caracteristiques
+editor.title.skin=Apparence
+
+spinner.text=Chargement...
+
+editor.stats.firstname=Prénom
+editor.stats.lastname=Nom
+editor.stats.faction=Faction
+editor.stats.origin=Origine
+editor.stats.job=Métier
+editor.stats.infos=Infos
+editor.stats.points_left=Points Réstants
+editor.stats.points_left.1=Le nombre de points qu'il vous reste à assigner dans les différentes compétences disponibles.
+editor.stats.points_left.2=Vous devez utiliser tout les points pour valider votre personnage
+
+editor.skin.infos=L'affichage de certains élèments (notament les couleurs) peut differer légèrement en jeu.|Pour garder une sauvgarde de votre skin, utilisez l'option "Sauvegarder mes paramètres"|Vous pouvez télécharger votre skin pour l'utilser ailleurs!|Ça va vous sinon?
+
+editor.skin.extra.size=Taille:
+editor.skin.extra.small=Bras fins:
+editor.skin.button.none=Aucun
+editor.skin.button.remove_layer=Supprimer la couche
+editor.skin.button.add_layer=Ajouter une couche
+editor.skin.button.splitted=Avancé:
+editor.skin.splitted.left=Gauche
+editor.skin.splitted.right=Droite
+
+editor.export.error.fill.firstname=Vous devez remplir le Prénom.
+editor.export.error.fill.lastname=Vous devez remplir le Nom.
+editor.export.error.fill.points=Vous devez utiliser tout vos points.
+
+editor.export.info.copy=Code copié dans le presse papier
+
+editor.export.button.export=Exporter
+editor.export.button.save=Sauvgarder mes paramètres
+editor.export.button.save.tip=Telecharger mes paramètres pour les réutiliser plus tard
+editor.export.button.download=Télécharger mon skin
+editor.export.button.download.tip=Telecharger mon skin au format PNG pour l'utilser autre part
+editor.export.button.load=Charger mes paramètres
+editor.export.button.load.tip=Charger mes paramètres depuis un fichier de sauvegarde
+editor.export.button.code=Recuperer mon code
+editor.export.button.code.tip=Recuperer mon code pour lier mon skin en jeu
+editor.export.button.code.copy.tip=Copier ce code et collez le dans votre jeu avec Ctrl+ V pour lier ce skin à votre compte.
+editor.export.button.code.copy=Copier le code
+
+editor.export.code.text.pref=Vous avez 
+editor.export.code.text.suff= secondes avant de devoir recréer un code

@@ -10,6 +10,7 @@
     import { browser } from '$app/environment';
     import Spinner from './spinner.svelte';
     import { currentAppearence } from './shared.svelte';
+    import tr from '$lib/translate.svelte';
     const active="inline-block text-lg font-medium text-center disabled:cursor-not-allowed p-4 rounded-lg active bg-primary-200 text-secondary-text" 
     const inactive="inline-block text-lg font-medium text-center disabled:cursor-not-allowed p-4 rounded-lg active hover:bg-primary-500 bg-primary-700 text-white"
     
@@ -59,7 +60,7 @@
     {:then skills} 
          <Tabs tabStyle="pill"  class=" pb-0" classes={{ content: " p-3 h-fit rounded-lg bg-primary-400 w-full" }}>
         {#if skills !=undefined}
-        <TabItem open title="Caracteristiques"  activeClass={active} inactiveClass={inactive}>
+        <TabItem open title={tr("editor.title.stats")}  activeClass={active} inactiveClass={inactive}>
             <div  class="bg-primary-300 rounded-md">
                 {#await resolveFaction()}
                     <Spinner/>
@@ -72,7 +73,7 @@
             </div>
         </TabItem>
         {/if}
-        <TabItem title="Apparence" open={skills ==undefined} activeClass={active}  inactiveClass={inactive}>
+        <TabItem title={tr("editor.title.skin")} open={skills ==undefined} activeClass={active}  inactiveClass={inactive}>
             <div  class="bg-primary-300 rounded-md">
                 {#await resloveSkin()}
                     <Spinner/>

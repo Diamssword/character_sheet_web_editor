@@ -6,6 +6,7 @@ declare global {
 		// interface Error {}
 		 interface Locals {
 			user_ip?:string,
+			dictionnary:{[key:string]:string}
 		 }
 		// interface PageState {}
 		// interface Platform {}

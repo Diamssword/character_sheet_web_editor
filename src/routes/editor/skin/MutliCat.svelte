@@ -5,6 +5,7 @@
     import { onMount } from "svelte";
     import DrawerButton from "./DrawerButton.svelte";
     import PartButton from "./PartButton.svelte";
+    import tr from "$lib/translate.svelte";
     let {children,skinEditor,cat,layer}:{children?:any,skinEditor:SkinEditor,cat:SkinPartsFormat,layer:string}=$props();
     let layers:number[]=$state([0]);
     function addLayer()
@@ -36,18 +37,18 @@
     })
 </script>
 <TabItem title={cat.title} open={layer=="base"}>
-    <p class=" text-secondary-text text-2xl">{cat.title}</p>
+    <p class=" text-secondary-text text-2xl">{tr(cat.title)}</p>
     {#each layers as l,i }
        {#each Object.keys(cat.cats||{"":{name:"",images:cat.images}}) as subk}
         {@const sub=cat.cats?cat.cats[subk]:{name:"",images:cat.images}}
             {#if cat.cats}
-                <h2>{sub.name}</h2>
+                <h2>{tr(sub.name)}</h2>
             {/if}
             <div class="my-3">
                  {#if i>0}
                 <div class="w-full relative">
                     <Button color="red" class="absolute right-0 top-0 py-1 px-2 cursor-pointer" onclick={()=>removeLayer(l)}>X</Button>
-                    <Tooltip type="light">Supprimer la couche</Tooltip>
+                    <Tooltip type="light">{tr("editor.skin.button.remove_layer")}</Tooltip>
                 </div>
                 {/if}
                 {#if sub.images}
@@ -63,6 +64,6 @@
         {/each}
     {/each}
     <Button class="mt-2 cursor-pointer" onclick={addLayer}>+</Button>
-    <Tooltip type="light">Ajouter une couche</Tooltip>
+    <Tooltip type="light">{tr("editor.skin.button.add_layer")}</Tooltip>
     {@render children?.()}
 </TabItem>

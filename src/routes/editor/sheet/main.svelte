@@ -3,6 +3,7 @@
     import type { Factions, SaveFormat, Skills } from "../skin/skinTypes";
     import { onMount } from "svelte";
     import { currentAppearence } from "../shared.svelte";
+    import tr from "$lib/translate.svelte";
     let {
         dataSaver,
         onPointsUpdate,
@@ -37,8 +38,8 @@
     let loreContentTitle= $state("");
     function openLoreModal(title:string,text:string)
     {
-        loreContentTitle=title;
-        loreContent=text;
+        loreContentTitle=tr(title);
+        loreContent=tr(text);
         loreModal=true;
     }
     function onloaded(){
@@ -96,12 +97,12 @@
     }
     function fillSelects(pickedFaction: (typeof factions)[0],init?:boolean) {
         originesItems = Object.keys(pickedFaction.origines).map((v) => {
-            return { name: pickedFaction.origines[v].name, value: v };
+            return { name: tr(pickedFaction.origines[v].name), value: v };
         });
         if(!init)
             selectedOrigine = Object.keys(pickedFaction.origines)[0];
         jobsItems = Object.keys(pickedFaction.jobs).map((v) => {
-            return { name: pickedFaction.jobs[v].name, value: v };
+            return { name: tr(pickedFaction.jobs[v].name), value: v };
         });
         if(!init)
             selectedJob = Object.keys(pickedFaction.jobs)[0];
@@ -196,26 +197,26 @@
             <div class="w-60">
                 
                 <div class="">
-                    <Label for="name" class="text-secondary-text">Prénom</Label>
+                    <Label for="name" class="text-secondary-text">{tr("editor.stats.firstname")}</Label>
                     <Input type="text" id="name" required bind:value={selectedPrenom} onchange={(e)=>onChangeText(e.target?.value,"firstname")}/>
                 </div>
                 <div class="">
-                    <Label for="lastname" class="text-secondary-text">Nom</Label>
+                    <Label for="lastname" class="text-secondary-text">{tr("editor.stats.lastname")}</Label>
                     <Input type="text" id="lastname" required bind:value={selectedNom} onchange={(e)=>onChangeText(e.target?.value,"lastname")}/>
                 </div>
             </div>
             <div>
                 <div class="w-50">
-                    <Label for="faction" class="text-secondary-text">Faction
+                    <Label for="faction" class="text-secondary-text">{tr("editor.stats.faction")}
                         <Select id="faction" placeholder="" value={selectedFaction} oninput={onChangeFac}>
                             {#each Object.keys(factions) as key, i}
-                                <option selected={i == 0} value={key}>{factions[key].name}</option>
+                                <option selected={i == 0} value={key}>{tr(factions[key].name)}</option>
                             {/each}
                         </Select>
                     </Label>
                     <div class="">
                         <Label for="origine" class="text-secondary-text"
-                            >Origine
+                            >{tr("editor.stats.origin")}
                             <Select
                                 id="origine"
                                 items={originesItems}
@@ -229,9 +230,7 @@
             </div>
             <div class="w-50">
                 <div class="">
-                    <Label for="metier" class="text-secondary-text"
-                        >Métier
-
+                    <Label for="metier" class="text-secondary-text">{tr("editor.stats.job")}
                         <Select
                             id="metier"
                             items={jobsItems}
@@ -247,33 +246,29 @@
                     <p class=" text-secondary-text text-nowrap">
                         {descs.faction.name}:
                     </p>
-                    <Button class="cursor-pointer bg-secondary-text flex-shrink-0 p-0 w-15 h-8" onclick={()=>openLoreModal(descs.job.name,descs.job.desc)}>Infos</Button>
+                    <Button class="cursor-pointer bg-secondary-text flex-shrink-0 p-0 w-15 h-8" onclick={()=>openLoreModal(descs.job.name,descs.job.desc)}>{tr("editor.stats.infos")}</Button>
                     <p class=" text-secondary-text text-nowrap">
                         {descs.origine.name}:
                     </p>
-                    <Button class="cursor-pointer bg-secondary-text flex-shrink-0 p-0 w-15 h-8" onclick={()=>openLoreModal(descs.job.name,descs.job.desc)}>Infos</Button>
+                    <Button class="cursor-pointer bg-secondary-text flex-shrink-0 p-0 w-15 h-8" onclick={()=>openLoreModal(descs.job.name,descs.job.desc)}>{tr("editor.stats.infos")}</Button>
                     <p class=" text-secondary-text text-nowrap">
                         {descs.job.name}:
                     </p>
-                        <Button class="cursor-pointer bg-secondary-text flex-shrink-0 p-0 w-15 h-8" onclick={()=>openLoreModal(descs.job.name,descs.job.desc)}>Infos</Button>
+                        <Button class="cursor-pointer bg-secondary-text flex-shrink-0 p-0 w-15 h-8" onclick={()=>openLoreModal(descs.job.name,descs.job.desc)}>{tr("editor.stats.infos")}</Button>
                 </div>
             </div>
             <div class="ml-10 flex items-center ">
                 <div class="max-w-full p-3 bg-primary-200 rounded-2xl">
                     <div>
                         <div class="flex gap-1">
-                            <Label
-                                for="points"
-                                class="w-6/7 mr-4 text-secondary-text text-xl mb-2"
-                                >Points Réstants</Label
-                            >
+                            <Label for="points" class="w-6/7 mr-4 text-secondary-text text-xl mb-2">{tr("editor.stats.points_left")}</Label>
                             <p class="flex items-center justify-center h-8 w-10 rounded-md bg-gray-50">
                                 {remainingPoints}
                             </p>
                         </div>
-                        <text class="w-full  text-secondary-200">Le nombre de points qu'il vous reste à assigner dans les différentes compétences disponibles.</text>
+                        <text class="w-full  text-secondary-200">{tr("editor.stats.points_left.1")}</text>
                           {#if remainingPoints>0}
-                            <p class="mt-2 text-secondary-text">Vous devez utiliser tout les points pour valider votre personnage </p>
+                            <p class="mt-2 text-secondary-text">{tr("editor.stats.points_left.2")}</p>
                         {/if}
                     </div>
                 </div>
@@ -291,7 +286,7 @@
                             <Label
                                 for="skill_{key}"
                                 class="w-4/5 mr-4 text-secondary-text text-xl mb-2"
-                                >{skill.name}</Label
+                                >{tr(skill.name)}</Label
                             >
                             <Button class="h-8 w-8 p-0 cursor-pointer" onclick={() => change(key, -1)}>-</Button>
                             <p class="flex items-center justify-center h-8 w-10 rounded-md bg-gray-50 {points[key].value > 0? 'text-secondary-text': ''}">
@@ -299,7 +294,7 @@
                             </p>
                             <Button class="h-8 w-8 p-0 cursor-pointer" onclick={() => change(key, 1)}>+</Button>
                         </div>
-                        <text class="w-full indent-6 text-secondary-200 text-justify">{skill.desc || "..."}</text>
+                        <text class="w-full indent-6 text-secondary-200 text-justify">{tr(skill.desc) || "..."}</text>
                     </div>
                 </Card>
             </div>
@@ -308,13 +303,6 @@
     </div>
 </div>
 <div class="pos">
-    <Modal title="Terms of Service" form bind:open={loreModal} onaction={({ action }) => alert(`Handle "${action}"`)}>
-
-  {#snippet footer()}
-    <Button type="submit" value="success">I accept</Button>
-    <Button type="submit" value="decline" color="alternative">Decline</Button>
-  {/snippet}
-</Modal>
 <Modal title={loreContentTitle} bind:open={loreModal} autoclose classes={{ header: "text-secondary-text" }} class="bg-primary-100">
   <p class=" whitespace-pre-line text-justify text-base leading-relaxed text-secondary-200 indent-6">{loreContent}</p>
 </Modal>

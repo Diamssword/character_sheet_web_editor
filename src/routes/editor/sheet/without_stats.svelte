@@ -3,6 +3,7 @@
     import type { SaveFormat } from "../skin/skinTypes";
     import { onMount } from "svelte";
     import { currentAppearence } from "../shared.svelte";
+    import tr from "$lib/translate.svelte";
     let {dataSaver}:
         {dataSaver: { loader: () => SaveFormat; saver: (data: SaveFormat) => void;} } = $props();
     
@@ -28,11 +29,11 @@
 </script>
                 
                 <div class="">
-                    <Label for="name" class="text-secondary-text">Prénom</Label>
+                    <Label for="name" class="text-secondary-text">{tr("editor.stats.firstname")}</Label>
                     <Input type="text" id="name" required bind:value={selectedPrenom} onchange={(e)=>onChangeText(e.target?.value,"firstname")}/>
                 </div>
                 <div class="">
-                    <Label for="lastname" class="text-secondary-text">Nom</Label>
+                    <Label for="lastname" class="text-secondary-text">{tr("editor.stats.lastname")}</Label>
                     <Input type="text" id="lastname" required bind:value={selectedNom} onchange={(e)=>onChangeText(e.target?.value,"lastname")}/>
                 </div>
 

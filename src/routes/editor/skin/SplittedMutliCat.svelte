@@ -6,6 +6,7 @@
     import { onMount } from "svelte";
     import DrawerButton from "./DrawerButton.svelte";
     import PartButton from "./PartButton.svelte";
+    import tr from "$lib/translate.svelte";
     let {children,skinEditor,cat,layer}:{children?:any,skinEditor:SkinEditor,cat:SkinPartsFormat,layer:string}=$props();
     let layers:number[]=$state([0,1]);
      let splitted=$derived.by(()=>{
@@ -113,9 +114,9 @@
     })
 </script>
 <TabItem title={cat.title} open={layer=="base"}>
-    <p class=" text-secondary-text text-2xl">{cat.title}</p>
+    <p class=" text-secondary-text text-2xl">{tr(cat.title)}</p>
     <div class="my-4 flex">
-        <Label for="bras" class="cursor-pointer text-secondary-text text-lg mr-2">Avancé:</Label>
+        <Label for="bras" class="cursor-pointer text-secondary-text text-lg mr-2">{tr("editor.skin.button.splitted")}</Label>
         <Toggle id="bras" checked={splitted} onchange={(e)=>switchMode(e.target.checked)} class="text-secondary-text cursor-pointer"></Toggle>
     </div>  
     {#each layers as l,i }
@@ -123,18 +124,18 @@
              <hr class="border border-primary-700 my-3"/>
                <div class="w-full relative my-5">
                     <Button color="red" class="absolute right-0 -top-4.5 py-1 px-2.5 cursor-pointer" onclick={()=>removeLayer(l)}>X</Button>
-                    <Tooltip type="light">Supprimer la couche</Tooltip>
+                    <Tooltip type="light">{tr("editor.skin.button.remove_layer")}</Tooltip>
                 </div>
         {/if}
     {#if splitted || i%2==0}
         {#if splitted}
-        <h2 class="text-gray-50">{i%2==0?"Gauche":"Droite"}</h2>
+        <h2 class="text-gray-50">{tr("editor.skin.splitted."+(i%2==0?"left":"right"))}</h2>
         {/if}
         <div class="border-primary-600 {cat.cats?"border-2":""} rounded-md pl-2">
             {#each Object.keys(cat.cats||{"":{name:"",images:cat.images}}) as subk}
             {@const sub=cat.cats?cat.cats[subk]:{name:"",images:cat.images}}
                 {#if cat.cats}
-                    <h3>{sub.name}</h3>
+                    <h3>{tr(sub.name)}</h3>
                 {/if}
                 <div class="my-3">
                     {#if sub.images}
@@ -153,7 +154,7 @@
     {/each}
     {#if multiLayerEnabled()==true}
         <Button class="mt-2 cursor-pointer" onclick={addLayer}>+</Button>
-        <Tooltip type="light">Ajouter une couche</Tooltip>
+        <Tooltip type="light">{tr("editor.skin.button.add_layer")}</Tooltip>
     {/if}
     {@render children?.()}
 </TabItem>

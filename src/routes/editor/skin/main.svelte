@@ -10,6 +10,7 @@
     import type { SaveFormat, SkinLayersFormat, SkinParts } from "./skinTypes";
     import { onMount } from "svelte";
     import { currentAppearence } from "../shared.svelte";
+    import tr from "$lib/translate.svelte";
     let {data,dataSaver,canExport}:{data:{datas:SkinParts,layers:SkinLayersFormat[],hasStats:boolean }, dataSaver: {loader:()=>SaveFormat,saver:(data:SaveFormat)=>void},canExport:boolean }=$props();
     let viewer:SkinViewer=$state(undefined as any);
     let skinEditor= new SkinEditor(data);
@@ -40,7 +41,7 @@
 
     currentAppearence.listeners.push(onloaded);
     onMount(onloaded)
-    var infos=["L'affichage de certains élèments (notament les couleurs) peut differer légèrement en jeu. ","Pour garder une sauvgarde de votre skin, utilisez l'option \"Sauvegarder mes paramètres\"","Vous pouvez télécharger votre skin pour l'utilser ailleurs!","Ça va vous sinon?"]
+    var infos=tr("editor.skin.infos").split("|")
     var pickedInfo=$state(0);
     if(browser)
     {

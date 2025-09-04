@@ -5,14 +5,15 @@
     import PartButton from "./PartButton.svelte";
     import DrawerButton from "./DrawerButton.svelte";
     import { browser } from "$app/environment";
+    import tr from "$lib/translate.svelte";
     let {children,skinEditor,cat,layer}:{children?:any,skinEditor:SkinEditor,cat:SkinPartsFormat,layer:string}=$props();
 </script>
 <TabItem title={cat.title} open={layer=="base"} activeClass="inline-block text-sm font-medium text-center bg-gray-200 disabled:cursor-not-allowed p-4 text-secondary-900 rounded-t-lg hover:text-gray-600 hover:bg-gray-50">
-<p class=" text-secondary-text text-2xl">{cat.title}</p>
+<p class=" text-secondary-text text-2xl">{tr(cat.title)}</p>
 {#each Object.keys(cat.cats||{"":{name:"",images:cat.images}}) as subk}
 {@const sub=cat.cats?cat.cats[subk]:{name:"",images:cat.images}}
 {#if cat.cats}
-    <h2 class="text-gray-50 ">{sub.name}</h2>
+    <h2 class="text-gray-50 ">{tr(sub.name)}</h2>
 {/if}
 <div class="my-3">
     {#if sub.images}

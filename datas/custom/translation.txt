@@ -1,0 +1,49 @@
+#lang: english
+#replace the content of ‘translation.txt’ to change the language
+
+editor.title.stats=Characteristics
+editor.title.skin=Appearance
+
+spinner.text=Loading…
+
+editor.stats.firstname=First name
+editor.stats.lastname=Last name
+editor.stats.faction=Faction
+editor.stats.origin=Origin
+editor.stats.job=Job
+editor.stats.infos=Info
+editor.stats.points_left=Remaining points
+editor.stats.points_left.1=The number of points you still have to assign to the various available skills.
+editor.stats.points_left.2=You must use all points to validate your character.
+
+editor.skin.infos=The display of some elements (especially colours) may differ slightly in‑game.|To keep a backup of your skin, use the “Save my settings” option.|You can download your skin to use elsewhere!|How does that sound?
+
+editor.skin.extra.size=Size:
+editor.skin.extra.small=Thin arms:
+editor.skin.button.none=None
+editor.skin.button.remove_layer=Remove layer
+editor.skin.button.add_layer=Add layer
+editor.skin.button.splitted=Advanced:
+editor.skin.splitted.left=Left
+editor.skin.splitted.right=Right
+
+editor.export.error.fill.firstname=You must fill in the First name.
+editor.export.error.fill.lastname=You must fill in the Last name.
+editor.export.error.fill.points=You must use all your points.
+
+editor.export.info.copy=Code copied to clipboard
+
+editor.export.button.export=Export
+editor.export.button.save=Save my settings
+editor.export.button.save.tip=Download my settings to reuse later
+editor.export.button.download=Download my skin
+editor.export.button.download.tip=Download my skin as a PNG to use elsewhere
+editor.export.button.load=Load my settings
+editor.export.button.load.tip=Load my settings from a backup file
+editor.export.button.code=Retrieve my code
+editor.export.button.code.tip=Retrieve my code to link my skin in‑game
+editor.export.button.code.copy.tip=Copy this code and paste it into the game with Ctrl + V to bind the skin to your account.
+editor.export.button.code.copy=Copy the code
+
+editor.export.code.text.pref=You have 
+editor.export.code.text.suff= seconds before you need to generate a new code

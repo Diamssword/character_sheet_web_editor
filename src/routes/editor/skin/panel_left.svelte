@@ -9,6 +9,7 @@
     import type { Factions, SaveFormat, SkinLayersFormat, SkinParts } from './skinTypes';
     import { onMount } from 'svelte';
     import { currentAppearence } from '../shared.svelte';
+    import tr from '$lib/translate.svelte';
     var {data,skinEditor,onExtra,dataSaver} :{data:{hasStats:boolean, datas:SkinParts,layers:SkinLayersFormat[]},skinEditor:SkinEditor,onExtra:(slime:boolean,size:number)=>void,dataSaver: {loader: () => SaveFormat; saver: (data: SaveFormat) => void;}} = $props();
     var taille:number=$state(40);
     var slim=$state(false);   
@@ -25,11 +26,11 @@
     onMount(onLoaded);
   </script>
   <div class="h-full overflow-auto">
-    <Tabs classes={{content:"p-4 rounded-lg dark:bg-gray-800 mt-4 bg-primary-300"}}>
+    <Tabs classes={{content:"p-4 rounded-lg dark:bg-gray-800 mt-4 bg-primary-300"}} ulClass="text-nowrap">
         <SimpleCat cat={data.datas[BASE]} layer={BASE} {skinEditor}>
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
-                    <Label for="taille"  class="mb-2 ml=5 mt-5 text-secondary-text text-xl" >Taille:</Label>
+                    <Label for="taille"  class="mb-2 ml=5 mt-5 text-secondary-text text-xl" >{tr("editor.skin.extra.size")}</Label>
                     <div class=" flex">
                         <p class=" content-center mr-1 text-gray-50">1m</p>
                         <Input class="w-22" type="number" min=40 max=99 id="taille" placeholder={Math.floor(40+(Math.random()*45))} required oninput={()=>onExtra(slim,taille)} bind:value={taille}/>
@@ -37,7 +38,7 @@
             
                 </div>
                 <div>
-                    <Label for="bras"  class="mb-2 ml=5 mt-5 text-secondary-text text-xl">Bras fins:</Label>
+                    <Label for="bras"  class="mb-2 ml=5 mt-5 text-secondary-text text-xl">{tr("editor.skin.extra.small")}</Label>
                     <Toggle id="bras" color={'green'} checked={slim} onchange={(e)=>{slim=e.target.checked; onExtra(slim,taille)}} class="text-secondary-text cursor-pointer"></Toggle>
                 </div>    
                 {#if !data.hasStats}
