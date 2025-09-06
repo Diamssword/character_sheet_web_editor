@@ -22,7 +22,15 @@ Note: due to caching, changes to file may take up to 10 minutes to appear on you
  The landing.html can be removed if you want the website to directly send you to the skin editor, or modifed at will.
  ## Skins
  The `skins` folder contains a serie of subfolder and textures used for rendering the different parts of the player's skin.  
- The name and position of folders are determinated by the structure of your `layers.json`
+ The name and position of folders are determinated by the structure of your `layers.json`  
+ the folder structure can be as folowwing:  
+  `datas/skins/[layer_name]/asset.png` for the most basic configuration  
+
+  `datas/skins/[layer_name]/[asset_name]`  
+                              `=>variation1.png`  
+                              `=>variation2.png`  will allow for a drawer-like menu with variation of an assets (for different hairs colors and alike)  
+
+   If you have defined categories on your layers, the path will then be `datas/skins/[layer_name]/[category_id]/asset.png` or `datas/skins/[layer_name]/[category_id]/[asset_name]/variation1.png `                                  
 
  ## Skins Display
  The Skin Display folder contains the vigniette of your skin parts, it is automaticlly populated when using the /dev/genskinpic route of the website.  
@@ -55,3 +63,7 @@ The fields are as follow:
     - headlong : a focus on the head and the upper body of the player, tilted slightly on the side, with a flat white texture applied to the head under
     - face: a focus on the face of the player, with a flat white texture applied to the head under
  - cat : allow you to order the texture in sub-category, where you can specify names and displayGen : `{"the_id":{"name":"The readable name",displayGen:"optional"},"another_cat":{...}}`
+
+
+# Building from source
+You can of course modify this project as you like by building it from source, the project is built around Sveltekit, Tailwind and flowbite-svelte.
