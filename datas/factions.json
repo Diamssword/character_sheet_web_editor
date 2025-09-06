@@ -2,7 +2,7 @@
     "my_faction":{
         "name":"My Faction",
         "desc":"The description of the faction",
-        "bonus":{"brute":10},
+        "bonus":{"brute":5},
         "origines":{
             "first_city":{
                 "name":"The Capital",
@@ -12,7 +12,7 @@
             "the_slum":{
                 "name":"The Slum",
                 "desc":"Ge tout of my slum!",
-                "skills":{"scout":15}
+                "skills":{"scout":12}
             }
         },
         "jobs":{
@@ -24,7 +24,7 @@
             "guard":{
                 "name":"Guard",
                 "desc":"More yummy strenght poits",
-                "skills":{"brute":20}
+                "skills":{"brute":10}
             },
             "jacko":{
                 "name":"Jack of all trades",

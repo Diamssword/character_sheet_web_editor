@@ -51,5 +51,5 @@ export type TextureInfos={
 }
 
 export type SkinParts={[key:string]:SkinPartsFormat};
-export type Skills={[id: string]: { name: string; desc: string; stages: number[],disabled?:boolean };}
+export type Skills={[id: string]: { name: string; desc: string; stages: number[],disabled?:boolean };} & {total_points:number,max_individual:number}
 export type Factions={  [id: string]: { name: string; desc: string; bonus: { [key: string]: number };origines: {[key: string]: {name: string;desc: string; skills: { [key: string]: number }; }; };jobs: {[key: string]: {name: string;desc: string;skills: { [key: string]: number }}}}}

@@ -1,7 +1,7 @@
 # Character Sheet Web Editor
 This project allow you to deploy your own web editor for the Minecraft mod ([Character Sheet](https://modrinth.com/mod/character-sheet))  
 It is, as of now, an obligation for the mod to work properly.
-
+![Screenshot](/screenshots/1.png)
 # Quickstart
 You can grab a build of the website under the 'releases' tab and unzip it somewhere.  
 This website require node 20.19.4 or higher to work.  
@@ -31,7 +31,10 @@ Note: due to caching, changes to file may take up to 10 minutes to appear on you
                               `=>variation2.png`  will allow for a drawer-like menu with variation of an assets (for different hairs colors and alike)  
 
    If you have defined categories on your layers, the path will then be `datas/skins/[layer_name]/[category_id]/asset.png` or `datas/skins/[layer_name]/[category_id]/[asset_name]/variation1.png `                                  
-
+   ### Asset format
+   The assets needed for the customizer follow a standard minecraft skin texture format [templates](https://minecraft.fandom.com/wiki/Skin#Templates)  
+   You simply leave the parts you don't want fully transparent.  
+   Compared to vanilla skins, you can have non-opaque colors (alpha from 0.0 to 1.0) and high resolution skin (max size defined in `layers.json`)  
  ## Skins Display
  The Skin Display folder contains the vigniette of your skin parts, it is automaticlly populated when using the /dev/genskinpic route of the website.  
  You should use this route everytime you modify the content of the `skins` folder, this route is locked behing the API_PUBLIC_KEY to prevent anyone other than you to use it.

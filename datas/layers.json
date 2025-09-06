@@ -1,7 +1,7 @@
 [
    {
         "name":"base",
-        "display":"Corps",
+        "display":"Body",
         "_note":"The 'base' layer mus always exist, and can contain a 'skinRes' attribute to define the final resolution of the skin, assets can be smaller but not higher res than this!",
         "_note1":"The layer definitions order is important! It might create clipping issues if a layer with bigger size is defined before a smaller one",
         "skinRes":256,
@@ -10,7 +10,7 @@
     },
     {
         "name":"hair",
-        "display":"Coiffure",
+        "display":"Hairs",
         "clearable":true,
         "cats":{"short":{"name":"Courts"},"medium":{"name":"Mi-Long","displayGen":"headlong"},"long":{"name":"Long","displayGen":"headlong"}},
         "size":0.021,
@@ -18,29 +18,21 @@
         "external":true
     },
     {
-        "name":"brows",
-        "display":"Sourcils",
-        "clearable":true,
-        "multi":true,
-        "size":0.017,
-        "displayGen":"face"
-    },
-    {
         "name":"eyes",
-        "display":"Yeux",
+        "display":"Eyes",
         "splited":true,
         "size":0.005,
         "displayGen":"face"
     },
     {
         "name":"mouth",
-        "display":"Bouche",
+        "display":"Mouth",
         "size":0.005,
         "displayGen":"face"
     },
     {
         "name":"beard",
-        "display":"Barbe",
+        "display":"Beard",
         "clearable":true,
         "size":0.02,
         "external":true,
@@ -48,7 +40,7 @@
     },
     {
         "name":"cosmetic",
-        "display":"Cosmetiques",
+        "display":"Makeup",
         "clearable":true,
         "multi":true,
         "size":0.03,
@@ -56,7 +48,7 @@
     },
    {
         "name":"underwear",
-        "display":"Sous-Vêtements",
+        "display":"Underwears",
         "size":0.1,
         "external":true,
         "displayGen":"bodyfull"

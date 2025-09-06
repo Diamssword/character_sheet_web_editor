@@ -40,6 +40,8 @@
         layers:await tryLoadResource("/datas/layers.json") as SkinLayersFormat[]|undefined};
         return datas;
     }
+    var points=50;
+    var points_max=20;
     var skill:Skills|undefined;
     async function resolveSkills()
     {
@@ -48,6 +50,13 @@
             skill=await tryLoadResource("/datas/skills.json") as Skills|undefined
         if(!skill)
             canExport=true;
+        if(skill)
+        {
+         points=skill.total_points;
+         points_max=skill.max_individual;
+         delete skill["total_points"];
+         delete skill["max_individual"];
+        }
         return skill;
     }
 </script>
@@ -66,7 +75,7 @@
                     <Spinner/>
                 {:then factions} 
                     {#if factions && skills}
-                        <MainSh data={{factions,skills}}  dataSaver={saver} onPointsUpdate={pointsExports}/>
+                        <MainSh data={{factions,skills}} max={points} max_ind={points_max} dataSaver={saver} onPointsUpdate={pointsExports}/>
                     {/if}
                 {/await}
                

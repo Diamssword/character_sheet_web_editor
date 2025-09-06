@@ -7,9 +7,13 @@
     let {
         dataSaver,
         onPointsUpdate,
-        data
+        data,
+        max,
+        max_ind
     }: {
         data:{skills:Skills,factions:Factions},
+        max:number,
+        max_ind:number,
         dataSaver: {
             loader: () => SaveFormat;
             saver: (data: SaveFormat) => void;
@@ -23,7 +27,7 @@
     let selectedJob = $state() as string;
     let selectedNom = $state() as string;
     let selectedPrenom = $state() as string;
-    let remainingPoints = $state(50);
+    let remainingPoints = $state(max);
     let originesItems = $state([] as { name: string; value: string }[]);
     let jobsItems = $state([] as { name: string; value: string }[]);
     let points = $state(fillPoints());
@@ -58,12 +62,15 @@
                     fillSelects(fac,true);
                     pickedFac = fac;
                     updateDescs(true);
-                    remainingPoints=50;
+                    remainingPoints=max;
                     Object.keys(stats.points).forEach(v=>{
-                        
-                        points[v].value=stats.points[v]
-                        remainingPoints-=points[v].value;
+                        if(points[v])
+                        {
+                            points[v].value=stats.points[v]
+                            remainingPoints-=points[v].value;
+                        }
                     });
+                    console.log(remainingPoints)
                     onPointsUpdate(remainingPoints);
                     return;
                 }
@@ -132,7 +139,7 @@
             dataSaver.saver(currentAppearence.data);
     }
     function fillPoints(pickedFaction?: (typeof factions)[0]) {
-        remainingPoints = 50;
+        remainingPoints = max;
         var fnCap = (skill: string, num: number) => {
             if (!res[skill]) {
                 console.error("Skill inconnu: " + skill);
@@ -176,7 +183,7 @@
     function change(key: string, added: number) {
         if (added > 0 && remainingPoints <= 0) return;
         var old = points[key].value;
-        points[key].value = Math.max(Math.min(points[key].value + added, 20),points[key].min);
+        points[key].value = Math.max(Math.min(points[key].value + added, max_ind),points[key].min);
         currentAppearence.data.stats.points[key]=points[key].value;
         dataSaver.saver(currentAppearence.data)
         remainingPoints += old - points[key].value;

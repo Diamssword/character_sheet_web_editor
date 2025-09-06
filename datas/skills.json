@@ -1,4 +1,6 @@
 {
+    "total_points":25,
+    "max_individual":20,
     "brute":{
         "name":"Brute",
         "stages":[10,15,20],
