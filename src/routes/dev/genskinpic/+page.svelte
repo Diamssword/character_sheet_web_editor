@@ -4,8 +4,8 @@
     var canvas: HTMLCanvasElement;
     export var viewer: skinViewer.SkinViewer;
     import type { PageData } from './$types';
-    import { browser } from '$app/environment';
-    import { Button, Range } from "flowbite-svelte";
+    import { browser, dev } from '$app/environment';
+    import { Button, Input, Range } from "flowbite-svelte";
     import type { SkinLayersFormat, TextureInfos } from "../../editor/skin/skinTypes";
     import { setSkinSize } from "$lib/skinviewer3d/textureHelper";
     import { BASE } from "../../editor/skin/panel";
@@ -21,6 +21,8 @@
         "face":{x:0,y:0,z:14.83,o:-12},
         
     }
+    var input:string|undefined=$state()
+    var error=$state("");
     onMount(() => {
         if (browser) {
             setSkinSize((data.layers.find(v=>v.name==BASE) as any).skinRes)
@@ -44,13 +46,18 @@
     });
     async function start()
     {
+        error="";
         for(let l of data.layers)
         {
+            if(error.length>1)
+                break;
             var dts=data.datas[l.name];
             if(dts.cats)
             {
                 for(let k of Object.keys(dts.cats))
                 {
+                    if(error.length>1)
+                        break;
                     await genForGroup(l.name,dts.cats[k].images,l.cats[k].displayGen||l.displayGen||"body",k)
                 }
             }
@@ -66,6 +73,8 @@
 
         for(let img of images)
         {
+            if(error.length>1)
+                        break;
             if(img.subs)   
             {
                 await genForType(layer,img.subs,type,base+"/"+img.id);  
@@ -106,7 +115,9 @@
     {
         viewer.loadSkin("main",url);
         setTimeout(()=>{
-            fetch("",{method:"post", body:JSON.stringify({id,image:canvas.toDataURL("png")})});
+            fetch("",{method:"post", body:JSON.stringify({key:input,id,image:canvas.toDataURL("png")})}).then(e=>{if(!e.ok){
+                error="Failed to send, check your key"
+            }}).catch(e=>error="Failed to send");
         },200)
         return new Promise<void>(res=>{
             setTimeout(res,300);
@@ -118,10 +129,20 @@
         viewer.playerObject.position.set(viewer.playerObject.position.x,height,viewer.playerObject.position.z)
     });
 </script>
-<div class="flex">
-<canvas class="bg-gray-700"  bind:this={canvas}></canvas>
-<Button onclick={()=>loadBase()}>Load Body</Button>
-<Button onclick={()=>loadHead()}>Load Head</Button>
-<Button onclick={()=>start()}>Start</Button>
-<Range bind:value={height} min="-50" max=50 />
+<div class="flex w-full h-screen flex-col bg-secondary-900">
+    <main class="overflow-y-auto flex  pt-5 px-5 content-center justify-center">
+        <div class= mt-10>
+        <canvas class="bg-gray-700"  bind:this={canvas}></canvas>
+            {#if dev}
+            <Button onclick={()=>loadBase()}>Load Body</Button>
+            <Button onclick={()=>loadHead()}>Load Head</Button>
+            <Range bind:value={height} min="-50" max=50 />    
+            {/if}
+            <div class="flex mt-5">
+                <Input  placeholder="API PUBLIC KEY" class="h-10" bind:value={input}/>
+                <Button onclick={()=>start()}>Start</Button>
+            </div>
+            <p class="text-red-500">{error}</p>
+        </div>
+    </main>
 </div>
